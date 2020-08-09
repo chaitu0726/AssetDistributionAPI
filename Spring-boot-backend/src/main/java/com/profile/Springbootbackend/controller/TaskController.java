@@ -122,6 +122,5 @@ public class TaskController {
     	this.sessionHandling.logout();
     	return true;
     }
-    //sdfbjsgjksdbjvfbfb
-    //dvbdkb 
+   //sample push
 }
