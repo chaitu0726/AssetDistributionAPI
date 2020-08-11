@@ -29,7 +29,7 @@ import static com.profile.Springbootbackend.util.ProfileConstants.SESSION_TIMEOU
 
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"*"})
 public class TaskController {
 
 	@Autowired

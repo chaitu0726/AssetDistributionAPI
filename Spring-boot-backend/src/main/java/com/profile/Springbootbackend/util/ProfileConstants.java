@@ -38,6 +38,7 @@ public interface ProfileConstants {
 	public static final String INVALID_USER="Invalid";
 	public static final String ADMIN_EMAIL="investmentdetails8@gmail.com";
 	public static final String USER_EMAIL ="andimhatre@gmail.com";
+	public static final String USER_EMAIL_ID="Chaitanya.Mhatre@in.tiaa.org";
 	public static final String ASSETS_LEFT ="LEFT";
 	public static final String CSV_FILE ="Assets.csv";
 	public static final String ID = "id";

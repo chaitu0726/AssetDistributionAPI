@@ -14,7 +14,7 @@ import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import static com.profile.Springbootbackend.util.ProfileConstants.ADMIN_EMAIL;
 import static com.profile.Springbootbackend.util.ProfileConstants.USER_EMAIL;
-
+import static com.profile.Springbootbackend.util.ProfileConstants.USER_EMAIL_ID;
 
 @Service
 public class AwsSesServiceImpl implements AwsSesService{
@@ -37,7 +37,7 @@ public class AwsSesServiceImpl implements AwsSesService{
 		    try {
 		      SendEmailRequest request = new SendEmailRequest()
 		          .withDestination(
-		              new Destination().withToAddresses(USER_EMAIL))
+		              new Destination().withToAddresses(USER_EMAIL_ID))
 		          .withMessage(new Message()
 		              .withBody(new Body()
 		                  .withText(new Content()
