@@ -1,22 +1,22 @@
-MN01,Monitor,HP/21.5 Inch/Full HD Monitor
-MN02,Monitor,HP/23.8 Inch/Full HD Monitor
-MN03,Monitor,Lenovo/21.5 Inch/LED Display Monitor
-MN04,Monitor,Lenovo/23.8 Inch/LED Display Monitor 
-MN05,Monitor,Samsung/23.5 Inch/Full HD Curve Monitor
-CPU01,CPU,Dell/Intel i7/16GB RAM+1TB HDD/Windows 10 Pro CPU 
-CPU02,CPU,Dell/Intel Xeon/16GB+1TB HDD/Windows 10 Pro CPU 
-CPU03,CPU,Dell/Core i3/8 GB+1TB HDD/Windows 10 Home CPU
-CPU04,CPU,ASUS/AMD Ryzen/8GB+512GB SSD+4GB NVIDIA Graphics/Windows 10 CPU
-CPU05,CPU,Lenovo/Core I5/8GB+500GB HDD/Win 10 Pro/Intel Graphics CPU
-KB01,Keyboard,Dell USB Keyboard
-KB02,Keyboard,HP USB Keyboard
-MS01,Mouse,Dell Wired Optical Mouse
-MS02,Mouse,Logitech Wired USB Mouse
-LD01,Landline,UNIDEN Landline Phone
-PR01,Printer,Epson All-in-One Ink Tank Printer
-PR02,Printer,Canon All-in-One Ink Tank Colour Printer
-HP01,Headphone,boAt Rockerz 400 Bluetooth Headphone 
-HP02,Headphone,Mivi Collar Wireless Bluetooth 5.0 Neckband
-LP01,Laptop,MacBook Pro/13-inch/8GB+512GB Storage/Intel i5
-LP02,Laptop,Acer/Core i7/16GB+1TB HDD+256GB SSD/4GB NVIDIA Graphics Laptop
-LP03,Laptop,MacBook Pro/13-inch/8GB+128GB/Intel i5
+MN1,Monitor,HP/21.5 Inch/Full HD Monitor
+MN2,Monitor,HP/23.8 Inch/Full HD Monitor
+MN3,Monitor,Lenovo/21.5 Inch/LED Display Monitor
+MN4,Monitor,Lenovo/23.8 Inch/LED Display Monitor 
+MN5,Monitor,Samsung/23.5 Inch/Full HD Curve Monitor
+CPU1,CPU,Dell/Intel i7/16GB RAM+1TB HDD/Windows 10 Pro CPU 
+CPU2,CPU,Dell/Intel Xeon/16GB+1TB HDD/Windows 10 Pro CPU 
+CPU3,CPU,Dell/Core i3/8 GB+1TB HDD/Windows 10 Home CPU
+CPU4,CPU,ASUS/AMD Ryzen/8GB+512GB SSD+4GB NVIDIA Graphics/Windows 10 CPU
+CPU5,CPU,Lenovo/Core I5/8GB+500GB HDD/Win 10 Pro/Intel Graphics CPU
+KB1,Keyboard,Dell USB Keyboard
+KB2,Keyboard,HP USB Keyboard
+MS1,Mouse,Dell Wired Optical Mouse
+MS2,Mouse,Logitech Wired USB Mouse
+LD1,Landline,UNIDEN Landline Phone
+PR1,Printer,Epson All-in-One Ink Tank Printer
+PR2,Printer,Canon All-in-One Ink Tank Colour Printer
+HP1,Headphone,boAt Rockerz 400 Bluetooth Headphone 
+HP2,Headphone,Mivi Collar Wireless Bluetooth 5.0 Neckband
+LP1,Laptop,MacBook Pro/13-inch/8GB+512GB Storage/Intel i5
+LP2,Laptop,Acer/Core i7/16GB+1TB HDD+256GB SSD/4GB NVIDIA Graphics Laptop
+LP3,Laptop,MacBook Pro/13-inch/8GB+128GB/Intel i5
