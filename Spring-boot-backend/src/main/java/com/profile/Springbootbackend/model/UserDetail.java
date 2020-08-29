@@ -8,18 +8,22 @@ public class UserDetail {
 	private String emailId;
 	private String mobileNo; 
 	private String dateOfJoining;
-	private String department;
-	private String role;
+	private String userRole;
 	private String isAssetsAssign;
 	private String isDelete;
+	private String department;
+	private String service;
 	
 	public UserDetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDetail(int userId, String firstName, String lastName, String emailId, String mobileNo,
-			String dateOfJoining, String department, String role, String isAssetsAssign, String isDelete) {
+	
+
+	 public UserDetail(int userId, String firstName, String lastName, String emailId, String mobileNo,
+			String dateOfJoining, String userRole, String isAssetsAssign, String isDelete, String department,
+			String service) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -27,11 +31,14 @@ public class UserDetail {
 		this.emailId = emailId;
 		this.mobileNo = mobileNo;
 		this.dateOfJoining = dateOfJoining;
-		this.department = department;
-		this.role = role;
+		this.userRole = userRole;
 		this.isAssetsAssign = isAssetsAssign;
 		this.isDelete = isDelete;
+		this.department = department;
+		this.service = service;
 	}
+
+
 
 	public int getUserId() {
 		return userId;
@@ -89,13 +96,6 @@ public class UserDetail {
 		this.department = department;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public String getIsAssetsAssign() {
 		return isAssetsAssign;
@@ -113,11 +113,30 @@ public class UserDetail {
 		this.isDelete = isDelete;
 	}
 
-	@Override
-	public String toString() {
-		return "UserDetail [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
-				+ emailId + ", mobileNo=" + mobileNo + ", dateOfJoining=" + dateOfJoining + ", department=" + department
-				+ ", role=" + role + ", isAssetsAssign=" + isAssetsAssign + ", isDelete=" + isDelete + "]";
+
+
+	public String getUserRole() {
+		return userRole;
 	}
+
+
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+
+
+
+	public String getService() {
+		return service;
+	}
+
+
+
+	public void setService(String service) {
+		this.service = service;
+	}
+
+	
 
 }
