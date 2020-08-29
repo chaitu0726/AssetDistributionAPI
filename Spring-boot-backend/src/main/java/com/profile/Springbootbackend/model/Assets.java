@@ -8,7 +8,7 @@ public class Assets {
 	private int assignedAssets;
 	private int availableAssets;
 	private int totalAssets;
-	
+	private String assetType;
 	
 	public Assets() {
 		super();
@@ -16,15 +16,23 @@ public class Assets {
 	}
 
 
-	public Assets(int assetsid, String assetkey, int assignedAssets, int availableAssets, int totalAssets,String assetName) {
+	
+
+
+	public Assets(int assetsid, String assetkey, String assetName, int assignedAssets, int availableAssets,
+			int totalAssets, String assetType) {
 		super();
 		this.assetsid = assetsid;
 		this.assetkey = assetkey;
+		this.assetName = assetName;
 		this.assignedAssets = assignedAssets;
 		this.availableAssets = availableAssets;
 		this.totalAssets = totalAssets;
-		this.assetName = assetName;
+		this.assetType = assetType;
 	}
+
+
+
 
 
 	public int getAssetsid() {
@@ -85,14 +93,12 @@ public class Assets {
 		this.assetName = assetName;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Assets [assetsid=" + assetsid + ", assetkey=" + assetkey + ", assetName=" + assetName
-				+ ", assignedAssets=" + assignedAssets + ", availableAssets=" + availableAssets + ", totalAssets="
-				+ totalAssets + "]";
+	public String getAssetType() {
+		return assetType;
 	}
-	
-	
+
+	public void setAssetType(String assetType) {
+		this.assetType = assetType;
+	}
 
 }
