@@ -9,7 +9,7 @@ mobile_no varchar(40),
 date_of_joining varchar(40),
 user_role varchar(50),
 is_assets_assign varchar(10),
-is_user_present,department,service varchar(10),
+is_user_present varchar(10),
 department varchar(30),
 service varchar(50)
 );
