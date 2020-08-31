@@ -21,7 +21,7 @@ public interface ProfileConstants {
 			")";
 	
 	public static final String LOGIN_QUERY = "select role from LOGIN where username=? AND password=?";
-	public static final String SHORT_USER_DETAILS_QUERY ="select user_id,first_name,last_name from USER WHERE is_assets_assign=? AND is_user_present=?";
+	public static final String SHORT_USER_DETAILS_QUERY ="select user_id,first_name,last_name from USER WHERE is_assets_assign=? AND is_user_present=? AND";
 	
 	//
 	//Assets QUERIES
@@ -48,4 +48,15 @@ public interface ProfileConstants {
 	public static final String ASSETS_RECORD_MAP="assetsRecordsMap";
 	public static final String ASSETS_STATITICS_LIST="assetStatiticsList";
 	
+	//roles
+	public static final String DG_CSO  = "department = 'Digital' AND service = 'Client Services Operations' ";
+	public static final String DG_CST  = "department = 'Digital' AND service = 'Client Services Technology' ";
+	public static final String IN_CSO  = "department = 'Institutional' AND service = 'Client Services Operations' ";
+	public static final String IN_CST  = "department = 'Institutional' AND service = 'Client Services Technology' ";
+	
+	//Queries
+	public static final String ASSET_KEY_QUERY = "select * from ASSET_KEY";
+	public static final String ASSET_TYPE_COUNT_QUERY = "select COUNT(asset_type) from ASSETS where asset_type = ?";
+	public static final String ASSET_KEY_INSERT_QUERY = "insert into ASSET_KEY(asset_type,asset_key) values (?,?)";
+	public static final String ASSETS_INSERT_QUERY ="insert into ASSETS(asset_key,assigned,available,total,asset_type)values(?,?,?,?,?)";
 }

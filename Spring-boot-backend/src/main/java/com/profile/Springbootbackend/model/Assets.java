@@ -9,6 +9,7 @@ public class Assets {
 	private int availableAssets;
 	private int totalAssets;
 	private String assetType;
+	private boolean isNewType;
 	
 	public Assets() {
 		super();
@@ -20,7 +21,7 @@ public class Assets {
 
 
 	public Assets(int assetsid, String assetkey, String assetName, int assignedAssets, int availableAssets,
-			int totalAssets, String assetType) {
+			int totalAssets, String assetType, boolean isNewType) {
 		super();
 		this.assetsid = assetsid;
 		this.assetkey = assetkey;
@@ -29,6 +30,7 @@ public class Assets {
 		this.availableAssets = availableAssets;
 		this.totalAssets = totalAssets;
 		this.assetType = assetType;
+		this.isNewType = isNewType;
 	}
 
 
@@ -99,6 +101,14 @@ public class Assets {
 
 	public void setAssetType(String assetType) {
 		this.assetType = assetType;
+	}
+
+	public boolean isNewType() {
+		return isNewType;
+	}
+
+	public void setNewType(boolean isNewType) {
+		this.isNewType = isNewType;
 	}
 
 }

@@ -17,6 +17,7 @@ import com.profile.Springbootbackend.model.AssetRecord;
 import com.profile.Springbootbackend.model.Assets;
 import com.profile.Springbootbackend.model.AssetsAssign;
 import com.profile.Springbootbackend.model.AssetsDropDown;
+import com.profile.Springbootbackend.model.AssetsKeys;
 import com.profile.Springbootbackend.model.Login;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 import com.profile.Springbootbackend.model.UserDetail;
@@ -108,9 +109,9 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public List<UserShortDetails> getUserShortDetails() {
+	public List<UserShortDetails> getUserShortDetails(String role) {
 		
-		return this.taskrepository.getUserShortDetails();
+		return this.taskrepository.getUserShortDetails(role);
 	}
 
 	@Override
@@ -219,6 +220,36 @@ public class TaskServiceImpl implements TaskService {
 		 }
 		 System.out.println(assetsDropDownList);
 		return assetsDropDownList;
+	}
+
+	@Override
+	public List<AssetsKeys> getAssetTypesDropDown() {
+
+		return this.taskrepository.getAssetTypesDropDown();
+	}
+
+	@Override
+	public boolean addNewAsset(Assets asset) {
+		String key;
+		if(asset.isNewType())
+		{
+			AssetsKeys assetKey = new AssetsKeys();
+			key = asset.getAssetkey()+1;
+			assetKey.setAssetKey(key);
+			assetKey.setAssetType(asset.getAssetType());
+			this.taskrepository.addAssetKey(assetKey);
+		}
+		else
+		{
+			int number = this.taskrepository.getAssetCountForType(asset.getAssetType()) + 1;
+			key = asset.getAssetkey() + number;
+		}
+		asset.setAssetkey(key);
+		asset.setAssignedAssets(0);
+		asset.setTotalAssets(asset.getAvailableAssets());
+		this.taskrepository.addNewAsset(asset);
+		this.amazonS3Service.updateCSVFile(asset);
+		return false;
 	}
 
 }

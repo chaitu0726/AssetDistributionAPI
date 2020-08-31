@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.profile.Springbootbackend.model.Assets;
 import com.profile.Springbootbackend.model.AssetsAssign;
 import com.profile.Springbootbackend.model.AssetsDropDown;
+import com.profile.Springbootbackend.model.AssetsKeys;
 import com.profile.Springbootbackend.model.Login;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 import com.profile.Springbootbackend.model.UserDetail;
 import com.profile.Springbootbackend.model.UserShortDetails;
+import com.profile.Springbootbackend.repository.TaskRepository;
+import com.profile.Springbootbackend.service.AmazonS3Service;
 import com.profile.Springbootbackend.service.AwsDynamoDbService;
 import com.profile.Springbootbackend.service.TaskService;
 import com.profile.Springbootbackend.util.SessionHandling;
@@ -41,7 +44,8 @@ public class TaskController {
 	@Autowired
 	private SessionHandling sessionHandling;
 	
-
+	@Autowired
+	private AmazonS3Service amazonS3Service;
     //login
     @PostMapping(value="/api/login")
     public Login login(@RequestBody Login login, HttpSession session)
@@ -54,10 +58,10 @@ public class TaskController {
     
     //get names,ids
     @GetMapping(value="/api/getnames")
-    public List<UserShortDetails> getUserShortDetails()
+    public List<UserShortDetails> getUserShortDetails(@RequestParam String role)
     {
     	if(!this.sessionHandling.getSession().equalsIgnoreCase(SESSION_TIMEOUT))
-    		return this.taskService.getUserShortDetails();
+    		return this.taskService.getUserShortDetails(role);
     	 return null;
     }
     
@@ -122,5 +126,25 @@ public class TaskController {
     	this.sessionHandling.logout();
     	return true;
     }
-   //sample push
+ 
+    @GetMapping(value="/api/getAssetTypesDropDown")
+    public List<AssetsKeys> getAssetTypesDropDown()
+    {
+    	return this.taskService.getAssetTypesDropDown();
+    }
+    
+    @PostMapping("/api/addNewAsset")
+    public boolean addNewAsset(@RequestBody Assets asset)
+    {
+    	this.taskService.addNewAsset(asset);
+    	return false;
+    }
+    /*
+    @PostMapping("/api/testFile")
+    public int addNewAssetTest(@RequestBody Assets asset)
+    {
+    	this.amazonS3Service.updateCSVFile(asset);
+    	return 0;
+    }
+    */
 }

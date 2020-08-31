@@ -222,7 +222,7 @@ select*from LOGIN;
  asset_key varchar(50),
  assigned int,
  available int,
- total,asset_type int,
+ total int,
  asset_type varchar(70)
  );
  

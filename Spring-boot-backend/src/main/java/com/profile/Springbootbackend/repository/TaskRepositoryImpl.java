@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import static com.profile.Springbootbackend.util.ProfileConstants.*;
 
 import com.profile.Springbootbackend.model.Assets;
+import com.profile.Springbootbackend.model.AssetsKeys;
 import com.profile.Springbootbackend.model.Login;
 import com.profile.Springbootbackend.model.UserDetail;
 import com.profile.Springbootbackend.model.UserShortDetails;
@@ -103,8 +104,10 @@ public class TaskRepositoryImpl implements TaskRepository {
 				userDetail.setEmailId(rs.getString(4));
 				userDetail.setMobileNo(rs.getString(5));
 				userDetail.setDateOfJoining(rs.getString(6));
-				userDetail.setDepartment(rs.getString(7));
+				userDetail.setUserRole(rs.getString(7));
 				userDetail.setIsAssetsAssign(rs.getString(8));
+				userDetail.setDepartment(rs.getString(10));
+				userDetail.setService(rs.getString(11));
 				return userDetail;
 			}
 			
@@ -161,8 +164,17 @@ public class TaskRepositoryImpl implements TaskRepository {
 	}
 
 	@Override
-	public List<UserShortDetails> getUserShortDetails() {
-		return this.jdbcTemlate.query(SHORT_USER_DETAILS_QUERY, new Object[] {NO,YES}, new ResultSetExtractor<List<UserShortDetails>>(){
+	public List<UserShortDetails> getUserShortDetails(String role) {
+		if(role.equals("DG_CSO"))
+			role = DG_CSO;
+		else if(role.equals("DG_CST"))
+			role = DG_CST;
+		else if(role.equals("IN_CSO"))
+			role = IN_CSO;
+		else if(role.equals("IN_CST"))
+			role = IN_CST;
+		
+		return this.jdbcTemlate.query(SHORT_USER_DETAILS_QUERY+role, new Object[] {NO,YES}, new ResultSetExtractor<List<UserShortDetails>>(){
 
 			@Override
 			public List<UserShortDetails> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -200,6 +212,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 					asset.setAssignedAssets(rs.getInt(3));
 					asset.setAvailableAssets(rs.getInt(4));
 					asset.setTotalAssets(rs.getInt(5));
+					asset.setAssetType(rs.getString(6));
 					assetsList.add(asset);
 				}
 				
@@ -251,6 +264,86 @@ public class TaskRepositoryImpl implements TaskRepository {
 			});
 		
 		return NEGATIVE;
+	}
+
+	@Override
+	public List<AssetsKeys> getAssetTypesDropDown() {
+		
+		try
+		{
+			return this.jdbcTemlate.query(ASSET_KEY_QUERY,new ResultSetExtractor<List<AssetsKeys>>()
+					{
+
+						@Override
+						public List<AssetsKeys> extractData(ResultSet rs) throws SQLException, DataAccessException {
+							List<AssetsKeys> assetKeyLsit = new ArrayList<AssetsKeys>();
+							
+							while(rs.next())
+							{
+								AssetsKeys assetKey = new AssetsKeys();
+								assetKey.setAssetKeyId(rs.getInt(1));
+								assetKey.setAssetKey(rs.getString(2));
+								assetKey.setAssetType(rs.getString(3));
+								assetKeyLsit.add(assetKey);
+							}
+							
+							return assetKeyLsit;
+						}
+				
+					});
+			
+		}catch(Exception e)
+		{
+			return null;
+		}
+	}
+
+	@Override
+	public int addNewAsset(Assets asset) {
+		try
+		{
+			return this.jdbcTemlate.update(ASSETS_INSERT_QUERY,new Object[] {
+					asset.getAssetkey(),
+					asset.getAssignedAssets(),
+					asset.getAvailableAssets(),
+					asset.getTotalAssets(),
+					asset.getAssetType()
+			});
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	@Override
+	public int addAssetKey(AssetsKeys assetKey) {
+		try
+		{
+			return this.jdbcTemlate.update(ASSET_KEY_INSERT_QUERY,new Object[] {
+					assetKey.getAssetType(),
+					assetKey.getAssetKey()
+			});
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	@Override
+	public int getAssetCountForType(String type) {
+		
+		try {
+			return this.jdbcTemlate.queryForObject(ASSET_TYPE_COUNT_QUERY,new Object[] {type},Integer.class);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+				return 0;
+			}	
 	}
 
 	
