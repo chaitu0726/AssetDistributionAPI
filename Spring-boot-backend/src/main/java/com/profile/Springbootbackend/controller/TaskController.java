@@ -20,6 +20,7 @@ import com.profile.Springbootbackend.model.AssetsAssign;
 import com.profile.Springbootbackend.model.AssetsDropDown;
 import com.profile.Springbootbackend.model.AssetsKeys;
 import com.profile.Springbootbackend.model.Login;
+import com.profile.Springbootbackend.model.RecommendedAssets;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 import com.profile.Springbootbackend.model.UserDetail;
 import com.profile.Springbootbackend.model.UserShortDetails;
@@ -147,4 +148,11 @@ public class TaskController {
     	return 0;
     }
     */
+    
+    @PostMapping("/api/setRecommendedAssets")
+    public int editRecommendedAssets(@RequestBody RecommendedAssets recommendedAssets)
+    {
+    	this.awsDynamoService.editRecommendedAssets(recommendedAssets);
+    	return 200;
+    }
 }

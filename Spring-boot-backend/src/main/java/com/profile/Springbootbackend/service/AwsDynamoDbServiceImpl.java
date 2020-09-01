@@ -19,6 +19,7 @@ import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.profile.Springbootbackend.model.AssetRecord;
+import com.profile.Springbootbackend.model.RecommendedAssets;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 
 import com.profile.Springbootbackend.util.SessionHandling;
@@ -165,4 +166,24 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 		return -1;
 	}
    }
+
+	@Override
+	public int editRecommendedAssets(RecommendedAssets recommendedAssets) {
+		try {
+			if(null !=recommendedAssets.getUserAssignAssets())
+			{
+				Map<String,Integer> recommendedToRole = new HashMap<String, Integer>();
+				for(UserAssignAssets tempAsset : recommendedAssets.getUserAssignAssets())
+					recommendedToRole.put(tempAsset.getAssetKey(), tempAsset.getAssetCount());
+				table2.putItem(new Item().withPrimaryKey(DEPARTMENT,recommendedAssets.getUserRole()).withMap(ASSETS, recommendedToRole));
+				return 200;
+			}
+			else
+			 return -1;
+			
+		}catch(AmazonDynamoDBException e) {
+			e.printStackTrace();
+		return -1;
+		}
+	}
 }
