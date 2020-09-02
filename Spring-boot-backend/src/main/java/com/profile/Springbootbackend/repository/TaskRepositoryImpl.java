@@ -346,5 +346,29 @@ public class TaskRepositoryImpl implements TaskRepository {
 			}	
 	}
 
+	@Override
+	public List<String> getUserRoleDropDown() {
+		try {
+			return this.jdbcTemlate.query(USER_ROLE_DROPDOWN_QUERY, new ResultSetExtractor<List<String>>() {
+
+				@Override
+				public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<String> userRoleDropdown = new ArrayList<String>();
+						while(rs.next())
+						{
+							String role = rs.getString(1);
+							userRoleDropdown.add(role);
+						}
+						return userRoleDropdown;
+				}
+			});
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	
 }

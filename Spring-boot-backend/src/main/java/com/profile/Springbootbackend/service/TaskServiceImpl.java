@@ -252,4 +252,10 @@ public class TaskServiceImpl implements TaskService {
 		return false;
 	}
 
+	@Override
+	public List<String> getUserRoleDropDown() {
+		
+		return this.taskrepository.getUserRoleDropDown();
+	}
+
 }

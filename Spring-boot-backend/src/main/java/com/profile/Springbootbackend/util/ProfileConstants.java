@@ -59,4 +59,5 @@ public interface ProfileConstants {
 	public static final String ASSET_TYPE_COUNT_QUERY = "select COUNT(asset_type) from ASSETS where asset_type = ?";
 	public static final String ASSET_KEY_INSERT_QUERY = "insert into ASSET_KEY(asset_type,asset_key) values (?,?)";
 	public static final String ASSETS_INSERT_QUERY ="insert into ASSETS(asset_key,assigned,available,total,asset_type)values(?,?,?,?,?)";
+	public static final String USER_ROLE_DROPDOWN_QUERY ="select DISTINCT user_role from USERS";
 }

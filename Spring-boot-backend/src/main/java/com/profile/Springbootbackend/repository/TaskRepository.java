@@ -30,4 +30,5 @@ public interface TaskRepository {
 	public int addNewAsset(Assets asset);
 	public int addAssetKey(AssetsKeys assetKey);
 	public int getAssetCountForType(String type);
+	public List<String> getUserRoleDropDown();
 }

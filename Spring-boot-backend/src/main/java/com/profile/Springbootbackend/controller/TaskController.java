@@ -155,4 +155,10 @@ public class TaskController {
     	this.awsDynamoService.editRecommendedAssets(recommendedAssets);
     	return 200;
     }
+    
+    @GetMapping("api/getRoleDropdown")
+    public List<String> getUserRoleDropDown()
+    {
+    	return this.taskService.getUserRoleDropDown();
+    }
 }
