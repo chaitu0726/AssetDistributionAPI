@@ -33,4 +33,5 @@ public interface TaskService {
 	
 	 public List<AssetsKeys> getAssetTypesDropDown();
 	 public boolean addNewAsset(Assets asset);
+	 public List<String> getUserRoleDropDown();
 }

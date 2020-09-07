@@ -4,10 +4,10 @@ public interface ProfileConstants {
 
 	//SQL queries
 	public static final String INSERT_QUERY = "INSERT INTO user(first_name,last_name,email_id,mobile_no,date_of_birth,profile_pic_url,flag)VALUES(?,?,?,?,?,?,?)";
-	public static final String UPDATE_QUERY = "UPDATE USER SET is_assets_assign=? WHERE user_id =?";
-	public static final String DELETE_QUERY = "UPDATE user SET is_user_present=? WHERE user_id=?";
-	public static final String SELECT_QUERY = "SELECT * FROM USER WHERE user_id =?";
-	public static final String SELECT_ALL_QUERY ="SELECT * FROM user WHERE flag =?";
+	public static final String UPDATE_QUERY = "UPDATE USERS SET is_assets_assign=? WHERE user_id =?";
+	public static final String DELETE_QUERY = "UPDATE USERS SET is_user_present=? WHERE user_id=?";
+	public static final String SELECT_QUERY = "SELECT * FROM USERS WHERE user_id =?";
+	public static final String SELECT_ALL_QUERY ="SELECT * FROM USERS WHERE flag =?";
 	public static final String CREATE_USER_TABLE ="create table user\r\n" + 
 			"(\r\n" + 
 			"user_id int primary key auto_increment,\r\n" + 
@@ -21,13 +21,13 @@ public interface ProfileConstants {
 			")";
 	
 	public static final String LOGIN_QUERY = "select role from LOGIN where username=? AND password=?";
-	public static final String SHORT_USER_DETAILS_QUERY ="select user_id,first_name,last_name from USER WHERE is_assets_assign=? AND is_user_present=? AND";
+	public static final String SHORT_USER_DETAILS_QUERY ="select user_id,first_name,last_name from USERS WHERE is_assets_assign=? AND is_user_present=? AND";
 	
 	//
 	//Assets QUERIES
 	public static final String SELECT_ALL_ASSETS_INFO = "select*from ASSETS";
 	public static final String UPDATE_ASSETS_TABLE = "UPDATE ASSETS SET assigned=?,available=? WHERE assets_id =?";
-	public static final String LEAVE_ASSETS_QUERY ="UPDATE USER SET is_assets_assign=? where user_id =?";
+	public static final String LEAVE_ASSETS_QUERY ="UPDATE USERS SET is_assets_assign=? where user_id =?";
 	//
 	public static final String YES= "YES";
 	public static final String NO ="NO";
@@ -49,10 +49,10 @@ public interface ProfileConstants {
 	public static final String ASSETS_STATITICS_LIST="assetStatiticsList";
 	
 	//roles
-	public static final String DG_CSO  = "department = 'Digital' AND service = 'Client Services Operations' ";
-	public static final String DG_CST  = "department = 'Digital' AND service = 'Client Services Technology' ";
-	public static final String IN_CSO  = "department = 'Institutional' AND service = 'Client Services Operations' ";
-	public static final String IN_CST  = "department = 'Institutional' AND service = 'Client Services Technology' ";
+	public static final String DG_CSO  = " department = 'Digital' AND service = 'Client Services Operations' ";
+	public static final String DG_CST  = " department = 'Digital' AND service = 'Client Services Technology' ";
+	public static final String IN_CSO  = " department = 'Institutional' AND service = 'Client Services Operations' ";
+	public static final String IN_CST  = " department = 'Institutional' AND service = 'Client Services Technology' ";
 	
 	//Queries
 	public static final String ASSET_KEY_QUERY = "select * from ASSET_KEY";

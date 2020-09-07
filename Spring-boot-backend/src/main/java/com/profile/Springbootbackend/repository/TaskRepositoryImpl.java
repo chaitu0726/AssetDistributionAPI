@@ -282,8 +282,9 @@ public class TaskRepositoryImpl implements TaskRepository {
 							{
 								AssetsKeys assetKey = new AssetsKeys();
 								assetKey.setAssetKeyId(rs.getInt(1));
-								assetKey.setAssetKey(rs.getString(2));
-								assetKey.setAssetType(rs.getString(3));
+								assetKey.setAssetType(rs.getString(2));
+								assetKey.setAssetKey(rs.getString(3));
+								
 								assetKeyLsit.add(assetKey);
 							}
 							
