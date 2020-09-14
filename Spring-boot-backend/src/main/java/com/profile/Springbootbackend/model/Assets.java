@@ -1,5 +1,7 @@
 package com.profile.Springbootbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Assets {
 	
 	private int assetsid;
@@ -9,6 +11,7 @@ public class Assets {
 	private int availableAssets;
 	private int totalAssets;
 	private String assetType;
+	@JsonProperty(value = "isNewType")
 	private boolean isNewType;
 	
 	public Assets() {
@@ -109,6 +112,17 @@ public class Assets {
 
 	public void setNewType(boolean isNewType) {
 		this.isNewType = isNewType;
+	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Assets [assetsid=" + assetsid + ", assetkey=" + assetkey + ", assetName=" + assetName
+				+ ", assignedAssets=" + assignedAssets + ", availableAssets=" + availableAssets + ", totalAssets="
+				+ totalAssets + ", assetType=" + assetType + ", isNewType=" + isNewType + "]";
 	}
 
 }

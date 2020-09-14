@@ -322,6 +322,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 	public int addAssetKey(AssetsKeys assetKey) {
 		try
 		{
+			System.out.println("new Asset Insert");
 			return this.jdbcTemlate.update(ASSET_KEY_INSERT_QUERY,new Object[] {
 					assetKey.getAssetType(),
 					assetKey.getAssetKey()

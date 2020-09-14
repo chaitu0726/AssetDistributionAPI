@@ -231,8 +231,10 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public boolean addNewAsset(Assets asset) {
 		String key;
+		System.out.println(asset);
 		if(asset.isNewType())
 		{
+			System.out.println("new Asset");
 			AssetsKeys assetKey = new AssetsKeys();
 			assetKey.setAssetKey(asset.getAssetkey());
 			assetKey.setAssetType(asset.getAssetType());
