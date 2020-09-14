@@ -5,7 +5,7 @@ public class UserAssignAssets {
 	private String assetKey;
 	private String assetName;
 	private Integer assetCount;
-	
+	private String assetType;
 	
 	public UserAssignAssets() {
 		super();
@@ -28,6 +28,12 @@ public class UserAssignAssets {
 	}
 	public void setAssetKey(String assetKey) {
 		this.assetKey = assetKey;
+	}
+	public String getAssetType() {
+		return assetType;
+	}
+	public void setAssetType(String assetType) {
+		this.assetType = assetType;
 	}
 	
 	

@@ -139,6 +139,7 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 			tempRec.setAssetName(tempAssetRecord.getAssetInfo());
 			tempRec.setAssetCount(entry.getValue());
 			tempRec.setAssetKey(entry.getKey());
+			tempRec.setAssetType(tempAssetRecord.getAssetType());
 			recommandedAssetList.add(tempRec);
 		}
 			

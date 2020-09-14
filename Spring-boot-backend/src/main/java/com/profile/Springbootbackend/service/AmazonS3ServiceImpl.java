@@ -148,7 +148,13 @@ public class AmazonS3ServiceImpl implements AmazonS3Service
 	        this.amazonS3.putObject(putObjectRequest);
 	            //removing the file created in the server
 	         file.delete();
-			
+			AssetRecord assetRecord  = new AssetRecord();
+			assetRecord.setAssetKey(asset.getAssetkey());
+			assetRecord.setAssetType(asset.getAssetType());
+			assetRecord.setAssetInfo(asset.getAssetName());
+			Map<String,AssetRecord> assetRecordMap = this.sessionHandling.getAssetRecordsMap();
+			assetRecordMap.put(asset.getAssetkey(),assetRecord);
+			this.sessionHandling.setAssetRecordsMap(assetRecordMap);
 		} catch (IOException  | AmazonServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -234,9 +234,9 @@ public class TaskServiceImpl implements TaskService {
 		if(asset.isNewType())
 		{
 			AssetsKeys assetKey = new AssetsKeys();
-			key = asset.getAssetkey()+1;
-			assetKey.setAssetKey(key);
+			assetKey.setAssetKey(asset.getAssetkey());
 			assetKey.setAssetType(asset.getAssetType());
+			key = asset.getAssetkey()+1;
 			this.taskrepository.addAssetKey(assetKey);
 		}
 		else
