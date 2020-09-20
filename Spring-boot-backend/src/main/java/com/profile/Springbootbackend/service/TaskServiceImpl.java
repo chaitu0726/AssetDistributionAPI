@@ -260,4 +260,21 @@ public class TaskServiceImpl implements TaskService {
 		return this.taskrepository.getUserRoleDropDown();
 	}
 
+	@Override
+	public boolean updateAssetCount(String key, Integer count) {
+		
+		List<Integer> countDetails = this.taskrepository.getAvailableAsset(key);
+		System.out.println(countDetails);
+		if(null != countDetails) {
+			int num = this.taskrepository.updateAvailableAsset(key,countDetails.get(0)+count,countDetails.get(1)+count);
+			if(num != NEGATIVE) {
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			return false;
+		}
+	}
+
 }

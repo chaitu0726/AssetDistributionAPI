@@ -20,6 +20,7 @@ import com.profile.Springbootbackend.model.AssetsAssign;
 import com.profile.Springbootbackend.model.AssetsDropDown;
 import com.profile.Springbootbackend.model.AssetsKeys;
 import com.profile.Springbootbackend.model.Login;
+import com.profile.Springbootbackend.model.MailSend;
 import com.profile.Springbootbackend.model.RecommendedAssets;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 import com.profile.Springbootbackend.model.UserDetail;
@@ -27,6 +28,7 @@ import com.profile.Springbootbackend.model.UserShortDetails;
 import com.profile.Springbootbackend.repository.TaskRepository;
 import com.profile.Springbootbackend.service.AmazonS3Service;
 import com.profile.Springbootbackend.service.AwsDynamoDbService;
+import com.profile.Springbootbackend.service.AwsSesService;
 import com.profile.Springbootbackend.service.TaskService;
 import com.profile.Springbootbackend.util.SessionHandling;
 import static com.profile.Springbootbackend.util.ProfileConstants.SESSION_TIMEOUT;
@@ -47,6 +49,9 @@ public class TaskController {
 	
 	@Autowired
 	private AmazonS3Service amazonS3Service;
+	
+	@Autowired
+	private AwsSesService awsSesService;
     //login
     @PostMapping(value="/api/login")
     public Login login(@RequestBody Login login, HttpSession session)
@@ -161,5 +166,16 @@ public class TaskController {
     public List<String> getUserRoleDropDown()
     {
     	return this.taskService.getUserRoleDropDown();
+    }
+    
+    @PostMapping("/api/sendmail")
+    public boolean sendMail(@RequestBody MailSend data)
+    {
+		return this.awsSesService.sendmailToAdmin(data);
+    }
+    @GetMapping("/api/updateAssetCount")
+    public boolean updateAssetNumber(@RequestParam String key,@RequestParam Integer count)
+    {
+		return this.taskService.updateAssetCount(key, count);
     }
 }

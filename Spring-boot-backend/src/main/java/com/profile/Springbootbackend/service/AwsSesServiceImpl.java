@@ -12,6 +12,8 @@ import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
+import com.profile.Springbootbackend.model.MailSend;
+
 import static com.profile.Springbootbackend.util.ProfileConstants.ADMIN_EMAIL;
 import static com.profile.Springbootbackend.util.ProfileConstants.USER_EMAIL;
 import static com.profile.Springbootbackend.util.ProfileConstants.USER_EMAIL_ID;
@@ -53,5 +55,36 @@ public class AwsSesServiceImpl implements AwsSesService{
 		          + ex.getMessage());
 		    }
 		}
+
+	@Override
+	public boolean sendmailToAdmin(MailSend mailSend) {
+		
+		// final String SUBJECT = "Assets Assign";
+		   final String TEXTBODY = "Query From : "+ mailSend.getName()+"\r\n"+
+				   					"User ID: "+mailSend.getUserId()+"\r\n"+
+				   					"\r\n"+"\r\n"+
+				   					mailSend.getMailBody();
+
+		    try {
+		      SendEmailRequest request = new SendEmailRequest()
+		          .withDestination(
+		              new Destination().withToAddresses(USER_EMAIL_ID))
+		          .withMessage(new Message()
+		              .withBody(new Body()
+		                  .withText(new Content()
+		                      .withCharset("UTF-8").withData(TEXTBODY)))
+		              .withSubject(new Content()
+		                  .withCharset("UTF-8").withData(mailSend.getMailSubject())))
+		          .withSource(ADMIN_EMAIL);
+		         
+		      this.amazonSimpleEmailService.sendEmail(request);
+		      System.out.println("Email sent to admin !!");
+		      return true;
+		    } catch (Exception ex) {
+		      System.out.println("The email was not sent. Error message: " 
+		          + ex.getMessage());
+		      return false;
+		    }
+	}
 
 }

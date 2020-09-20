@@ -10,6 +10,7 @@ import com.profile.Springbootbackend.model.AssetsAssign;
 import com.profile.Springbootbackend.model.AssetsDropDown;
 import com.profile.Springbootbackend.model.AssetsKeys;
 import com.profile.Springbootbackend.model.Login;
+import com.profile.Springbootbackend.model.MailSend;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 import com.profile.Springbootbackend.model.UserDetail;
 import com.profile.Springbootbackend.model.UserShortDetails;
@@ -34,4 +35,6 @@ public interface TaskService {
 	 public List<AssetsKeys> getAssetTypesDropDown();
 	 public boolean addNewAsset(Assets asset);
 	 public List<String> getUserRoleDropDown();
+	 public boolean updateAssetCount(String key,Integer count);
+	 
 }

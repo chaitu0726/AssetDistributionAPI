@@ -372,5 +372,40 @@ public class TaskRepositoryImpl implements TaskRepository {
 		}
 	}
 
+	@Override
+	public List<Integer> getAvailableAsset(String key) {
+		try {
+			return this.jdbcTemlate.queryForObject(SELECT_ASSET_AVAILABLE_COUNT,new Object[] {key}, new RowMapper<List<Integer>>() {
+
+				@Override
+				public List<Integer> mapRow(ResultSet rs, int rowNum) throws SQLException {
+					List<Integer> countList = new ArrayList<Integer>();
+					countList.add(rs.getInt(1));
+					countList.add(rs.getInt(2));
+					return countList;
+				}
+			});
+		}catch(Exception e) {
+		e.printStackTrace();
+		return null;
+		}
+		
+	}
+
+	@Override
+	public int updateAvailableAsset(String key, Integer available, Integer total) {
+		
+		try {
+			return this.jdbcTemlate.update(UPDATE_ASSET_AVAILABLE_COUNT,new Object[] {
+						available,
+						total,
+						key
+			});
+		}catch(Exception e) {
+			e.printStackTrace();
+			return NEGATIVE;
+		}
+	}
+
 	
 }

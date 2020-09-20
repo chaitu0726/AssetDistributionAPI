@@ -60,4 +60,6 @@ public interface ProfileConstants {
 	public static final String ASSET_KEY_INSERT_QUERY = "insert into ASSET_KEY(asset_type,asset_key) values (?,?)";
 	public static final String ASSETS_INSERT_QUERY ="insert into ASSETS(asset_key,assigned,available,total,asset_type)values(?,?,?,?,?)";
 	public static final String USER_ROLE_DROPDOWN_QUERY ="select DISTINCT user_role from USERS";
+	public static final String SELECT_ASSET_AVAILABLE_COUNT="select available,total from ASSETS where asset_key=?";
+	public static final String UPDATE_ASSET_AVAILABLE_COUNT="update  ASSETS SET available = ?, total = ? where asset_key=?";
 }
