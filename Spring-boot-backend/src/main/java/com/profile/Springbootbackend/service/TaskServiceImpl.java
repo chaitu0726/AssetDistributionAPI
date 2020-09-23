@@ -218,7 +218,7 @@ public class TaskServiceImpl implements TaskService {
 			 	assetsDropDownList.add(tempDD);
 			 	
 		 }
-		 System.out.println(assetsDropDownList);
+		// System.out.println(assetsDropDownList);
 		return assetsDropDownList;
 	}
 
@@ -231,10 +231,10 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public boolean addNewAsset(Assets asset) {
 		String key;
-		System.out.println(asset);
+		//System.out.println(asset);
 		if(asset.isNewType())
 		{
-			System.out.println("new Asset");
+			//System.out.println("new Asset");
 			AssetsKeys assetKey = new AssetsKeys();
 			assetKey.setAssetKey(asset.getAssetkey());
 			assetKey.setAssetType(asset.getAssetType());
@@ -264,7 +264,7 @@ public class TaskServiceImpl implements TaskService {
 	public boolean updateAssetCount(String key, Integer count) {
 		
 		List<Integer> countDetails = this.taskrepository.getAvailableAsset(key);
-		System.out.println(countDetails);
+		//System.out.println(countDetails);
 		if(null != countDetails) {
 			int num = this.taskrepository.updateAvailableAsset(key,countDetails.get(0)+count,countDetails.get(1)+count);
 			if(num != NEGATIVE) {

@@ -154,7 +154,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 	@Override
 	public String login(Login login) {
 		try {
-		return this.jdbcTemlate.queryForObject(LOGIN_QUERY,new Object[] {login.getUsername(),login.getUsername()}, String.class);
+		return this.jdbcTemlate.queryForObject(LOGIN_QUERY,new Object[] {login.getUsername(),login.getPassword()}, String.class);
 		}
 		catch(Exception e)
 		{
@@ -322,7 +322,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 	public int addAssetKey(AssetsKeys assetKey) {
 		try
 		{
-			System.out.println("new Asset Insert");
+			//System.out.println("new Asset Insert");
 			return this.jdbcTemlate.update(ASSET_KEY_INSERT_QUERY,new Object[] {
 					assetKey.getAssetType(),
 					assetKey.getAssetKey()

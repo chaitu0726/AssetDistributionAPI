@@ -29,7 +29,7 @@ public class SessionHandling {
 		session = session1;
 		session.setAttribute(ID,username);
 		session.setMaxInactiveInterval(3600);
-		System.out.println("hi iam here..");
+		System.out.println("Session Created");
 	}
 	public String getSession()
 	{

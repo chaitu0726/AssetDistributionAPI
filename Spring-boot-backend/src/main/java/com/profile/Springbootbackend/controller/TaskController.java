@@ -130,6 +130,7 @@ public class TaskController {
     public boolean logout()
     {
     	this.sessionHandling.logout();
+    	System.out.println("Logout");
     	return true;
     }
  
@@ -142,7 +143,7 @@ public class TaskController {
     @PostMapping("/api/addNewAsset")
     public boolean addNewAsset(@RequestBody Assets asset)
     {
-    	System.out.println(asset);
+    	
     	this.taskService.addNewAsset(asset);
     	return false;
     }
