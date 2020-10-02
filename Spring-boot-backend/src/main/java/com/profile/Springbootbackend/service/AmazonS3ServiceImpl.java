@@ -22,11 +22,9 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,42 +51,7 @@ public class AmazonS3ServiceImpl implements AmazonS3Service
     
     @Autowired
     SessionHandling sessionHandling;
- /*   
-    @Async
-    public int uploadFileToS3Bucket(MultipartFile multipartFile,String email) 
-    {
-        String fileName = multipartFile.getOriginalFilename();
-       
-        try {
-           
-            File file = new File(fileName);
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(multipartFile.getBytes());
-            fos.close();
-
-            PutObjectRequest putObjectRequest = new PutObjectRequest(this.awsS3AudioBucket,email+".png", file);
-
-           this.amazonS3.putObject(putObjectRequest);
-            //removing the file created in the server
-            file.delete();
-        } catch (IOException | AmazonServiceException ex) {
-            logger.error("error [" + ex.getMessage() + "] occurred while uploading [" + fileName + "] ");
-            return NOT_OK;
-        }
-		return OK;
-        
-    }
-
-    @Async
-    public void deleteFileFromS3Bucket(String fileName) 
-    {
-        try {
-            amazonS3.deleteObject(new DeleteObjectRequest(awsS3AudioBucket, fileName));
-        } catch (AmazonServiceException ex) {
-            logger.error("error [" + ex.getMessage() + "] occurred while removing [" + fileName + "] ");
-        }
-    }
-*/
+ 
 	@Override
 	public boolean readFile() {
 

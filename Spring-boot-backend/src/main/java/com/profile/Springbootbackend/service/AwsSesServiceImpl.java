@@ -15,13 +15,17 @@ import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.profile.Springbootbackend.model.MailSend;
 
 import static com.profile.Springbootbackend.util.ProfileConstants.ADMIN_EMAIL;
-import static com.profile.Springbootbackend.util.ProfileConstants.USER_EMAIL;
 import static com.profile.Springbootbackend.util.ProfileConstants.USER_EMAIL_ID;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class AwsSesServiceImpl implements AwsSesService{
 	
 	private AmazonSimpleEmailService amazonSimpleEmailService;
+	
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); 
 	
 	@Autowired
 	public AwsSesServiceImpl(Region awsRegion, AWSCredentialsProvider awsCredentialsProvider) {
@@ -49,10 +53,10 @@ public class AwsSesServiceImpl implements AwsSesService{
 		          .withSource(ADMIN_EMAIL);
 		         
 		      this.amazonSimpleEmailService.sendEmail(request);
-		      System.out.println("Email sent!");
+		      LOGGER.log(Level.INFO, "Email Sent!!"); 
 		    } catch (Exception ex) {
-		      System.out.println("The email was not sent. Error message: " 
-		          + ex.getMessage());
+		    	ex.printStackTrace();
+		    	LOGGER.log(Level.WARNING, "Email Not Sent"); 
 		    }
 		}
 
@@ -78,11 +82,11 @@ public class AwsSesServiceImpl implements AwsSesService{
 		          .withSource(ADMIN_EMAIL);
 		         
 		      this.amazonSimpleEmailService.sendEmail(request);
-		      System.out.println("Email sent to admin !!");
+		      LOGGER.log(Level.INFO, "Email Sent to admin!!"); 
 		      return true;
 		    } catch (Exception ex) {
-		      System.out.println("The email was not sent. Error message: " 
-		          + ex.getMessage());
+		    	ex.printStackTrace();
+		    	LOGGER.log(Level.WARNING, "Email Not Sent"); 
 		      return false;
 		    }
 	}

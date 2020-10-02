@@ -3,22 +3,11 @@ package com.profile.Springbootbackend.util;
 public interface ProfileConstants {
 
 	//SQL queries
-	public static final String INSERT_QUERY = "INSERT INTO user(first_name,last_name,email_id,mobile_no,date_of_birth,profile_pic_url,flag)VALUES(?,?,?,?,?,?,?)";
 	public static final String UPDATE_QUERY = "UPDATE USERS SET is_assets_assign=? WHERE user_id =?";
 	public static final String DELETE_QUERY = "UPDATE USERS SET is_user_present=? WHERE user_id=?";
 	public static final String SELECT_QUERY = "SELECT * FROM USERS WHERE user_id =?";
 	public static final String SELECT_ALL_QUERY ="SELECT * FROM USERS WHERE flag =?";
-	public static final String CREATE_USER_TABLE ="create table user\r\n" + 
-			"(\r\n" + 
-			"user_id int primary key auto_increment,\r\n" + 
-			"first_name varchar(50),\r\n" + 
-			"last_name varchar(50),\r\n" + 
-			"email_id varchar(60),\r\n" + 
-			"mobile_no varchar(40),\r\n" + 
-			"date_of_birth varchar(40),\r\n" + 
-			"profile_pic_url varchar(200),\r\n" + 
-			"flag varchar(10)\r\n" + 
-			")";
+	
 	
 	public static final String LOGIN_QUERY = "select role from LOGIN where username=? AND password=?";
 	public static final String SHORT_USER_DETAILS_QUERY ="select user_id,first_name,last_name from USERS WHERE is_assets_assign=? AND is_user_present=? AND";

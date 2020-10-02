@@ -17,19 +17,22 @@ import static com.profile.Springbootbackend.util.ProfileConstants.ASSETS_STATITI
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 @Service
 @SessionScope
 public class SessionHandling {
 	
 	
 	private static  HttpSession session;
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
 	public void setSession(String username, HttpSession session1)
 	{
 		session = session1;
 		session.setAttribute(ID,username);
 		session.setMaxInactiveInterval(3600);
-		System.out.println("Session Created");
+		LOGGER.log(Level.INFO, "Session Created");
 	}
 	public String getSession()
 	{
@@ -38,19 +41,17 @@ public class SessionHandling {
 		if(null != session && null != session.getAttribute(ID))
 			return session.getAttribute(ID).toString();
 		
-		if(session != null)
-			System.out.println("heyyyyyyy");
-		
-		System.out.println(SESSION_TIMEOUT);
+		LOGGER.log(Level.WARNING, "Session Timeout");
 			return SESSION_TIMEOUT;
 	}
 	
-	public void logout()
+	public boolean logout()
 	{
 		//ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		///HttpSession session = sra.getRequest().getSession();
 		if(null != session)
 			session.invalidate();
+		return true;
 	}
 	
 	public int getSessionUsername()

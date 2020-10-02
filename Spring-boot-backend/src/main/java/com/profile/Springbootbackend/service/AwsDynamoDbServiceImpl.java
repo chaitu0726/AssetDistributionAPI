@@ -27,6 +27,8 @@ import com.profile.Springbootbackend.util.SessionHandling;
 import static com.profile.Springbootbackend.util.ProfileConstants.DEPARTMENT;
 import static com.profile.Springbootbackend.util.ProfileConstants.ASSETS;
 import static com.profile.Springbootbackend.util.ProfileConstants.ID;
+import static com.profile.Springbootbackend.util.ProfileConstants.OK;
+import static com.profile.Springbootbackend.util.ProfileConstants.NEGATIVE;
 
 @Component
 public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
@@ -61,7 +63,7 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 	}
 	catch(AmazonDynamoDBException e)
 	{	
-		System.out.println(e.getErrorMessage());
+		e.printStackTrace();
 		return false;
 	}
   }
@@ -103,7 +105,7 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 	}
 	catch(AmazonDynamoDBException e)
 	{	
-		System.out.println(e.getErrorMessage());
+		e.printStackTrace();
 		return null;
 	}
   }
@@ -118,7 +120,6 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 		GetItemSpec spec = new GetItemSpec().withPrimaryKey(DEPARTMENT,department);
 		Item outcome = this.table2.getItem(spec);
 		String assetsD = outcome.toJSON().toString();
-		//System.out.println(assetsD);
 		try {
 			dhm = new ObjectMapper().readValue(assetsD,Map.class);
 			assetsDistribution = dhm.get(ASSETS);
@@ -147,7 +148,7 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 	}
 	catch(AmazonDynamoDBException e)
 	{	
-		System.out.println(e.getErrorMessage());
+		e.printStackTrace();
 		return null;
 	}
 }
@@ -159,12 +160,12 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 		int userId = this.sessionHandling.getSessionUsername();
 		DeleteItemSpec deleteItemSpec = new DeleteItemSpec().withPrimaryKey(ID,userId);
 		 table.deleteItem(deleteItemSpec);
-		return 0;
+		return OK;
 	}
 	catch(AmazonDynamoDBException e)
 	{	
-		System.out.println(e.getErrorMessage());
-		return -1;
+		e.printStackTrace();
+		return NEGATIVE;
 	}
    }
 
@@ -177,14 +178,14 @@ public class AwsDynamoDbServiceImpl implements AwsDynamoDbService{
 				for(UserAssignAssets tempAsset : recommendedAssets.getUserAssignAssets())
 					recommendedToRole.put(tempAsset.getAssetKey(), tempAsset.getAssetCount());
 				table2.putItem(new Item().withPrimaryKey(DEPARTMENT,recommendedAssets.getUserRole()).withMap(ASSETS, recommendedToRole));
-				return 200;
+				return OK;
 			}
 			else
-			 return -1;
+			 return NEGATIVE;
 			
 		}catch(AmazonDynamoDBException e) {
 			e.printStackTrace();
-		return -1;
+		return NEGATIVE;
 		}
 	}
 }

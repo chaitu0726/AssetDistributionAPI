@@ -12,12 +12,12 @@ import com.profile.Springbootbackend.model.UserShortDetails;
 
 public interface TaskRepository {
 
-	public int addUser(UserDetail userDetail);
+	
 	public int updateUser(int userId);
 	public int deleteUser();
 	public UserDetail selectUser(int userId);
 	public List<UserDetail> selectAllUsers();
-	public boolean createTable();
+	
 	public String login(Login login);
 	public List<UserShortDetails> getUserShortDetails(String role);
 	

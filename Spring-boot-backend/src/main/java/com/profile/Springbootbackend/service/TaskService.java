@@ -10,14 +10,13 @@ import com.profile.Springbootbackend.model.AssetsAssign;
 import com.profile.Springbootbackend.model.AssetsDropDown;
 import com.profile.Springbootbackend.model.AssetsKeys;
 import com.profile.Springbootbackend.model.Login;
-import com.profile.Springbootbackend.model.MailSend;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 import com.profile.Springbootbackend.model.UserDetail;
 import com.profile.Springbootbackend.model.UserShortDetails;
 
 public interface TaskService {
 
-	public int addUser(UserDetail userDetail);
+
 	public int updateUser(AssetsAssign assetsAssign);
 	public int deleteUser();
 	public UserDetail selectUser(int userId);

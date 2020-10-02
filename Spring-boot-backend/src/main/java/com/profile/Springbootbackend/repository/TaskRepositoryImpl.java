@@ -33,25 +33,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 	@Autowired
 	private SessionHandling sessionHandling;
 
-	@Override
-	public int addUser(UserDetail userDetail) {
 	
-	try {
-		return this.jdbcTemlate.update(INSERT_QUERY, new Object[]{
-			 		userDetail.getFirstName(),
-			 		userDetail.getLastName(),
-			 		userDetail.getEmailId(),
-			 		YES
-					}
-				);
-	}
-	catch(Exception e)
-	{
-		System.out.println(e.getMessage());
-		return NEGATIVE;
-	}
-		
- }
 
 	@Override
 	public int updateUser(int userId) {
@@ -64,7 +46,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return NEGATIVE;
 		}	
 	}
@@ -83,7 +65,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 	}
 	catch(Exception e)
 	{
-		System.out.println(e.getMessage());
+		e.printStackTrace();
 		return NEGATIVE;
 	}
 		
@@ -115,7 +97,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 	}
 	catch(Exception e)
 	{
-		System.out.println(e.getMessage());
+		e.printStackTrace();
 		return null;
 	}
 		
@@ -144,12 +126,6 @@ public class TaskRepositoryImpl implements TaskRepository {
 		});
 	}
 
-	@Override
-	public boolean createTable() {
-		
-		this.jdbcTemlate.execute(CREATE_USER_TABLE);
-		return true;
-	}
 
 	@Override
 	public String login(Login login) {
@@ -158,7 +134,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}	
 	}
@@ -223,7 +199,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 			
@@ -247,7 +223,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 	}
 	catch(Exception e)
 	{
-		System.out.println(e.getMessage());
+		e.printStackTrace();
 		return NEGATIVE;
 	}
 	
@@ -322,7 +298,6 @@ public class TaskRepositoryImpl implements TaskRepository {
 	public int addAssetKey(AssetsKeys assetKey) {
 		try
 		{
-			//System.out.println("new Asset Insert");
 			return this.jdbcTemlate.update(ASSET_KEY_INSERT_QUERY,new Object[] {
 					assetKey.getAssetType(),
 					assetKey.getAssetKey()
@@ -343,7 +318,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 			}
 			catch(Exception e)
 			{
-				System.out.println(e.getMessage());
+				e.printStackTrace();
 				return 0;
 			}	
 	}

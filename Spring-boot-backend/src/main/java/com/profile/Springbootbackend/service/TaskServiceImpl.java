@@ -48,15 +48,7 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
 	AwsSesService awsSesService;
 	
-	/**@Autowired
-	private HttpSession session;*/
-	
-	@Override
-	public int addUser(UserDetail userDetail) {
-		if(this.taskrepository.addUser(userDetail) == 0)
-			return NEGATIVE;
-		return OK;
-	}
+
 
 	@Override //checks are remaining
 	public int updateUser(AssetsAssign assetsAssign) {
@@ -153,9 +145,6 @@ public class TaskServiceImpl implements TaskService {
 			modifiedList.add(assetNew);
 		}
 		this.sessionHandling.setAssetMap(assetDetails);
-		
-		//System.out.println(assetDetails);
-		//System.out.println(modifiedList);
 		return modifiedList;
 	}
 
@@ -190,13 +179,11 @@ public class TaskServiceImpl implements TaskService {
 	public List<AssetsDropDown> getAssetsDropDown() {
 		List<AssetsDropDown> assetsDropDownList = new ArrayList<AssetsDropDown>();
 		Map<String,AssetRecord> recordMap = this.sessionHandling.getAssetRecordsMap();
-		//System.out.println(recordMap);
 		 HashSet<String> tempSet=new HashSet<String>();  
 		for (Entry<String, AssetRecord> entry : recordMap.entrySet()) 
 		{
 			tempSet.add(entry.getValue().getAssetType());
 		}
-		//System.out.println(tempSet);
 		
 		Iterator<String> i=tempSet.iterator();  
 		 while(i.hasNext())  
@@ -214,11 +201,9 @@ public class TaskServiceImpl implements TaskService {
 						}
 			 	}			
 			 	AssetsDropDown tempDD = new AssetsDropDown(type,tempAssetInfo);
-			 	//System.out.println(tempDD);
 			 	assetsDropDownList.add(tempDD);
 			 	
 		 }
-		// System.out.println(assetsDropDownList);
 		return assetsDropDownList;
 	}
 
@@ -231,10 +216,8 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public boolean addNewAsset(Assets asset) {
 		String key;
-		//System.out.println(asset);
 		if(asset.isNewType())
 		{
-			//System.out.println("new Asset");
 			AssetsKeys assetKey = new AssetsKeys();
 			assetKey.setAssetKey(asset.getAssetkey());
 			assetKey.setAssetType(asset.getAssetType());
@@ -251,7 +234,7 @@ public class TaskServiceImpl implements TaskService {
 		asset.setTotalAssets(asset.getAvailableAssets());
 		this.taskrepository.addNewAsset(asset);
 		this.amazonS3Service.updateCSVFile(asset);
-		return false;
+		return true;
 	}
 
 	@Override
@@ -264,7 +247,6 @@ public class TaskServiceImpl implements TaskService {
 	public boolean updateAssetCount(String key, Integer count) {
 		
 		List<Integer> countDetails = this.taskrepository.getAvailableAsset(key);
-		//System.out.println(countDetails);
 		if(null != countDetails) {
 			int num = this.taskrepository.updateAvailableAsset(key,countDetails.get(0)+count,countDetails.get(1)+count);
 			if(num != NEGATIVE) {

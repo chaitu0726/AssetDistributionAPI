@@ -3,6 +3,8 @@ package com.profile.Springbootbackend.controller;
 
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,8 +27,6 @@ import com.profile.Springbootbackend.model.RecommendedAssets;
 import com.profile.Springbootbackend.model.UserAssignAssets;
 import com.profile.Springbootbackend.model.UserDetail;
 import com.profile.Springbootbackend.model.UserShortDetails;
-import com.profile.Springbootbackend.repository.TaskRepository;
-import com.profile.Springbootbackend.service.AmazonS3Service;
 import com.profile.Springbootbackend.service.AwsDynamoDbService;
 import com.profile.Springbootbackend.service.AwsSesService;
 import com.profile.Springbootbackend.service.TaskService;
@@ -47,11 +47,11 @@ public class TaskController {
 	@Autowired
 	private SessionHandling sessionHandling;
 	
-	@Autowired
-	private AmazonS3Service amazonS3Service;
 	
 	@Autowired
 	private AwsSesService awsSesService;
+	
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); 
     //login
     @PostMapping(value="/api/login")
     public Login login(@RequestBody Login login, HttpSession session)
@@ -129,9 +129,8 @@ public class TaskController {
     @GetMapping(value="/api/logout")
     public boolean logout()
     {
-    	this.sessionHandling.logout();
-    	System.out.println("Logout");
-    	return true;
+    	LOGGER.log(Level.INFO, "Logout"); 
+    	return this.sessionHandling.logout();
     }
  
     @GetMapping(value="/api/getAssetTypesDropDown")
@@ -143,24 +142,14 @@ public class TaskController {
     @PostMapping("/api/addNewAsset")
     public boolean addNewAsset(@RequestBody Assets asset)
     {
-    	
-    	this.taskService.addNewAsset(asset);
-    	return false;
+    	return this.taskService.addNewAsset(asset);
     }
-    /*
-    @PostMapping("/api/testFile")
-    public int addNewAssetTest(@RequestBody Assets asset)
-    {
-    	this.amazonS3Service.updateCSVFile(asset);
-    	return 0;
-    }
-    */
+   
     
     @PostMapping("/api/setRecommendedAssets")
     public int editRecommendedAssets(@RequestBody RecommendedAssets recommendedAssets)
     {
-    	this.awsDynamoService.editRecommendedAssets(recommendedAssets);
-    	return 200;
+    	return this.awsDynamoService.editRecommendedAssets(recommendedAssets);
     }
     
     @GetMapping("api/getRoleDropdown")
